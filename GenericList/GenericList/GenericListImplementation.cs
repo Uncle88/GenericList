@@ -25,12 +25,20 @@ namespace GenericList
             //}
         } 
 
-        public bool IsReadOnly => throw new NotImplementedException();
+        public bool IsReadOnly 
+        {
+            get
+            {
+                return false;
+            }
+        }
 
         public void Add(T item)
         {
-            throw new NotImplementedException();
-        }
+            int i;
+            i = array.Length;
+            array[i + 1] = item;
+		}
 
         public void Clear()
         {
