@@ -6,7 +6,13 @@ namespace GenericList
 {
     public class GenericListImplementation : IList<T>
     {
-        public T this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public T[] array = new T[5];
+            
+        public T this[int index]
+        { 
+            get { return array[index]; }
+            set { array[index] = value; }
+        }
 
         public int Count => throw new NotImplementedException();
 
