@@ -14,7 +14,16 @@ namespace GenericList
             set { array[index] = value; }
         }
 
-        public int Count => throw new NotImplementedException();
+        public int Count 
+        {
+            get { return array.Length; } 
+            //get 
+            //{ 
+            //for (int i=0; i< array.Length; i++)
+            //j++;
+            //return j;
+            //}
+        } 
 
         public bool IsReadOnly => throw new NotImplementedException();
 
