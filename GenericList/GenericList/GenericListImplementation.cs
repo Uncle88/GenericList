@@ -42,7 +42,8 @@ namespace GenericList
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            for (int i=0; i < array.Length; i++)
+                array[i] = default(T);
         }
 
         public bool Contains(T item)
