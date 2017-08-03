@@ -43,12 +43,14 @@ namespace GenericList
 
         public bool Contains(T item)
         {
+            if (item == null) 
+                return false;
             for (int i = 0; i < array.Length; i++)
             {
-                //if (array[i] == item)
-                    return true;
+                if (array[i].GetType() != item.GetType())
+                    return false;
             }
-            return false;
+            return true;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
