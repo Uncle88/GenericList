@@ -7,6 +7,7 @@ namespace GenericList
 	public class GenericList<T> : IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable, IReadOnlyList<T>, IReadOnlyCollection<T>
     {
         T[] array = new T[5];
+		T[] massiv = new T[5];
             
         public T this[int index]
         { 
@@ -55,7 +56,12 @@ namespace GenericList
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            if(arrayIndex != null && arrayIndex >= 0)
+            {
+                for (int i = arrayIndex; i < array.Length; i++)
+                    for (int j = 0; j < array.Length;j++)
+                    massiv[j] = array[i];
+            }
         }
 
         public void CopyTo(Array array, int index)
