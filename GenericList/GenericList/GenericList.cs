@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace GenericList
 {
-    public class GenericListImplementation : IList<T>
+	public class GenericList<T> : IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable, IReadOnlyList<T>, IReadOnlyCollection<T>
     {
-        public T[] array = new T[5];
+        T[] array = new T[5];
             
         public T this[int index]
         { 
@@ -17,12 +17,6 @@ namespace GenericList
         public int Count 
         {
             get { return array.Length; } 
-            //get 
-            //{ 
-            //for (int i=0; i< array.Length; i++)
-            //j++;
-            //return j;
-            //}
         } 
 
         public bool IsReadOnly 
@@ -35,9 +29,10 @@ namespace GenericList
 
         public void Add(T item)
         {
-            int i;
-            i = array.Length;
-            array[i + 1] = item;
+			int i;
+			i = array.Length;
+			Array.Resize(ref array, i++);
+            array[i] = item;
 		}
 
         public void Clear()
@@ -50,13 +45,18 @@ namespace GenericList
         {
             for (int i = 0; i < array.Length; i++)
             {
-                if (array[i] == item)
+                //if (array[i] == item)
                     return true;
             }
             return false;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CopyTo(Array array, int index)
         {
             throw new NotImplementedException();
         }
