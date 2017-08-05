@@ -98,7 +98,15 @@ namespace GenericList
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            if (item == null)
+                return false;
+            for (int i = 0; i < Count; i++)
+                if (array.Equals(item))
+                {
+                    array[i] = default(T);
+                    return true;
+                }
+                    return false;
         }
 
         public void RemoveAt(int index)
