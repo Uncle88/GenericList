@@ -71,7 +71,7 @@ namespace GenericList
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
 
         public int IndexOf(T item)
