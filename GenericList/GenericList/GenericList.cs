@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GenericList
 {
-	public class GenericList<T> : IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable, IReadOnlyList<T>, IReadOnlyCollection<T>
+	public class GenericList<T> : IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable, IList, ICollection, IReadOnlyList<T>, IReadOnlyCollection<T>
     {
         T[] array = new T[5];
 		T[] massiv = new T[5];
@@ -14,6 +14,8 @@ namespace GenericList
             get { return array[index]; }
             set { array[index] = value; }
         }
+
+        object IList.this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public int Count 
         {
@@ -28,6 +30,12 @@ namespace GenericList
             }
         }
 
+        public bool IsFixedSize => throw new NotImplementedException();
+
+        public bool IsSynchronized => throw new NotImplementedException();
+
+        public object SyncRoot => throw new NotImplementedException();
+
         public void Add(T item)
         {
 			int i;
@@ -35,6 +43,11 @@ namespace GenericList
 			Array.Resize(ref array, i++);
             array[i] = item;
 		}
+
+        public int Add(object value)
+        {
+            throw new NotImplementedException();
+        }
 
         public void Clear()
         {
@@ -52,6 +65,11 @@ namespace GenericList
                     return false;
             }
             return true;
+        }
+
+        public bool Contains(object value)
+        {
+            throw new NotImplementedException();
         }
 
         public void CopyTo(T[] array, int arrayIndex)
@@ -84,6 +102,11 @@ namespace GenericList
             return 0;
         }
 
+        public int IndexOf(object value)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Insert(int index, T item)
         {
             if((index < Count) && (index >= 0))
@@ -94,6 +117,11 @@ namespace GenericList
 				}
                 array[index] = item;
             }
+        }
+
+        public void Insert(int index, object value)
+        {
+            throw new NotImplementedException();
         }
 
         public bool Remove(T item)
@@ -107,6 +135,11 @@ namespace GenericList
                     return true;
                 }
                     return false;
+        }
+
+        public void Remove(object value)
+        {
+            throw new NotImplementedException();
         }
 
         public void RemoveAt(int index)
