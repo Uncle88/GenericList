@@ -111,7 +111,16 @@ namespace GenericList
 
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            if (index != 0)
+            {
+                for (int i = 0; i < Count; i++)
+                {
+                    if (array.Equals(index))
+                    {
+                        array[i] = default(T);
+                    }
+                }
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
