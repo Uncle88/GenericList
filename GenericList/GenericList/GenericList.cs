@@ -86,7 +86,14 @@ namespace GenericList
 
         public void Insert(int index, T item)
         {
-            throw new NotImplementedException();
+            if((index < Count) && (index >= 0))
+            {
+				for (int i = Count - 1; i > index; i--)
+				{
+                    array[i] = array[i - 1];
+				}
+                array[index] = item;
+            }
         }
 
         public bool Remove(T item)
