@@ -74,9 +74,14 @@ namespace GenericList
             return GetEnumerator();
         }
 
-        public int IndexOf(T item)
+         public int IndexOf(T item)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] == item)
+                    return i;
+            }
+            return 0;
         }
 
         public void Insert(int index, T item)
