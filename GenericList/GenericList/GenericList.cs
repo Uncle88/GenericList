@@ -38,8 +38,7 @@ namespace GenericList
 
         public void Add(T item)
         {
-			int i;
-			i = array.Length;
+		    int i = array.Length;
 			Array.Resize(ref array, i++);
             array[i] = item;
 		}
