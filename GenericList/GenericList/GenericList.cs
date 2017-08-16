@@ -102,9 +102,18 @@ namespace GenericList
             return true;
         }
 
-        public bool Contains(object value)
+        public bool Contains(object item)
         {
-            throw new NotImplementedException();
+			if (item == null)
+				return false;
+			for (int i = 0; i < array.Length; i++)
+            {
+                if (!Comparer.Equals(array[i], item))
+				{
+					return false;
+				}
+            }
+            return true;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
