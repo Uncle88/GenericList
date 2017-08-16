@@ -10,17 +10,30 @@ namespace GenericList
         T[] massiv = new T[5];
 
         #region Properties
-        public T this[int index]
-        {
-            get { return array[index]; }
-            set { array[index] = value; }
-        }
-
-        object IList.this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
         public int Count
         {
             get { return array.Length; }
+}
+        public T this[int index]
+        {
+            get { return array[index]; }
+            set 
+            { 
+               if (index < 0 || index >= Count)
+                    throw new IndexOutOfRangeException("The specified index is out of range.");
+                array[index] = value; 
+            }
+        }
+
+        object IList.this[int index] 
+        { 
+            get { return (IList)array[index]; }
+            set 
+            {
+                if (index < 0 || index >= Count)
+                    throw new IndexOutOfRangeException("The specified index is out of range.");
+                ((IList)array)[index] = value;
+            }
         }
 
         public bool IsReadOnly
