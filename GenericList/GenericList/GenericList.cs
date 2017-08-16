@@ -4,25 +4,26 @@ using System.Collections.Generic;
 
 namespace GenericList
 {
-	public class GenericList<T> : IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable, IList, ICollection, IReadOnlyList<T>, IReadOnlyCollection<T>
+    public class GenericList<T> : IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable, IList, ICollection, IReadOnlyList<T>, IReadOnlyCollection<T>
     {
         T[] array = new T[5];
-		T[] massiv = new T[5];
-            
+        T[] massiv = new T[5];
+
+        #region Properties
         public T this[int index]
-        { 
+        {
             get { return array[index]; }
             set { array[index] = value; }
         }
 
         object IList.this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public int Count 
+        public int Count
         {
-            get { return array.Length; } 
-        } 
+            get { return array.Length; }
+        }
 
-        public bool IsReadOnly 
+        public bool IsReadOnly
         {
             get
             {
@@ -36,12 +37,15 @@ namespace GenericList
 
         public object SyncRoot => throw new NotImplementedException();
 
+        #endregion
+
+        #region Methods
         public void Add(T item)
         {
-		    int i = array.Length;
-			Array.Resize(ref array, i++);
+            int i = array.Length;
+            Array.Resize(ref array, i++);
             array[i] = item;
-		}
+        }
 
         public int Add(object value)
         {
@@ -50,13 +54,13 @@ namespace GenericList
 
         public void Clear()
         {
-            for (int i=0; i < array.Length; i++)
+            for (int i = 0; i < array.Length; i++)
                 array[i] = default(T);
         }
 
         public bool Contains(T item)
         {
-            if (item == null) 
+            if (item == null)
                 return false;
             for (int i = 0; i < array.Length; i++)
             {
@@ -73,11 +77,11 @@ namespace GenericList
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            if(arrayIndex != null && arrayIndex >= 0)
+            if (arrayIndex != null && arrayIndex >= 0)
             {
                 for (int i = arrayIndex; i < array.Length; i++)
-                    for (int j = 0; j < array.Length;j++)
-                    massiv[j] = array[i];
+                    for (int j = 0; j < array.Length; j++)
+                        massiv[j] = array[i];
             }
         }
 
@@ -91,7 +95,7 @@ namespace GenericList
             return GetEnumerator();
         }
 
-         public int IndexOf(T item)
+        public int IndexOf(T item)
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -108,12 +112,12 @@ namespace GenericList
 
         public void Insert(int index, T item)
         {
-            if((index < Count) && (index >= 0))
+            if ((index < Count) && (index >= 0))
             {
-				for (int i = Count - 1; i > index; i--)
-				{
+                for (int i = Count - 1; i > index; i--)
+                {
                     array[i] = array[i - 1];
-				}
+                }
                 array[index] = item;
             }
         }
@@ -133,7 +137,7 @@ namespace GenericList
                     array[i] = default(T);
                     return true;
                 }
-                    return false;
+            return false;
         }
 
         public void Remove(object value)
@@ -143,7 +147,7 @@ namespace GenericList
 
         public void RemoveAt(int index)
         {
-            if (index != 0)
+            if (index >= 0)
             {
                 for (int i = 0; i < Count; i++)
                 {
@@ -157,7 +161,8 @@ namespace GenericList
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-			return GetEnumerator();
+            return GetEnumerator();
         }
+        #endregion
     }
 }
