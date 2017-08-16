@@ -44,7 +44,14 @@ namespace GenericList
             }
         }
 
-        public bool IsFixedSize => throw new NotImplementedException();
+        public bool IsFixedSize
+        {  
+            get
+            {
+				//return ((IList)array).IsFixedSize;
+				return true;
+            }
+        }
 
         public bool IsSynchronized => throw new NotImplementedException();
 
