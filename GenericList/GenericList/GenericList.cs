@@ -53,9 +53,21 @@ namespace GenericList
             }
         }
 
-        public bool IsSynchronized => throw new NotImplementedException();
+        public bool IsSynchronized 
+        {
+            get
+            {
+                return false;
+            }
+        }
 
-        public object SyncRoot => throw new NotImplementedException();
+        public object SyncRoot 
+        {
+            get 
+            {
+                return array;
+            }
+        }
 
         #endregion
 
