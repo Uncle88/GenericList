@@ -6,6 +6,7 @@ namespace GenericList
 {
     class GenericList<T> : IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable, IList, ICollection, IReadOnlyList<T>, IReadOnlyCollection<T>
     {
+        int index;
         const int size = 2;
         static int pov = 2;
         static int currentValue= (int)Math.Pow(size, pov);
@@ -157,7 +158,15 @@ namespace GenericList
 
         public int IndexOf(object value)
         {
-            throw new NotImplementedException();
+			object a = null;
+			for (int i = 0; i < currentValue; i++)
+			{
+                if (a == array[i])
+				{
+					return i;
+				}
+			}
+			return -1;
         }
 
         public void Insert(int index, T item)
@@ -174,7 +183,18 @@ namespace GenericList
 
         public void Insert(int index, object value)
         {
-            throw new NotImplementedException();
+			{
+                if ((currentValue + 1 <= array.Length) && (index < Count) && (index >= 0))
+				{
+					currentValue++;
+
+					for (int i = Count - 1; i > index; i--)
+					{
+                        array[i] = array[i - 1];
+					}
+                    array[index] = (T)value;
+				}
+			}
         }
 
         public bool Remove(T item)
