@@ -84,9 +84,20 @@ namespace GenericList
             array[i] = item;
         }
 
-        public int Add(object value)
+        int IList.Add(object value)
         {
-            throw new NotImplementedException();
+            array[index++] = (T)value;
+            if (index == currentValue)
+            {
+                currentValue = (int)Math.Pow(size, ++pov);
+                T[] temp = new T[currentValue];
+                for (int i = 0; i < index; i++)
+                {
+                    temp[i] = array[i];
+                }
+                array = temp;
+            }
+            return index;
         }
 
         public void Clear()
@@ -131,7 +142,7 @@ namespace GenericList
             }
         }
 
-        public void CopyTo(Array array, int index)
+        public void CopyTo(Array array, int index)//---------------------------
         {
             if ( index >= 0)
             {
@@ -146,7 +157,7 @@ namespace GenericList
             return GetEnumerator();
         }
 
-        public int IndexOf(T item)
+        public int IndexOf(T item)//-------------------------------------------
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -156,7 +167,7 @@ namespace GenericList
             return 0;
         }
 
-        public int IndexOf(object value)
+        public int IndexOf(object value)//-------------------------------------
         {
 			object a = null;
 			for (int i = 0; i < currentValue; i++)
