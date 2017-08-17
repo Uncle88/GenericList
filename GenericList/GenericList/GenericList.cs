@@ -4,9 +4,13 @@ using System.Collections.Generic;
 
 namespace GenericList
 {
-    public class GenericList<T> : IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable, IList, ICollection, IReadOnlyList<T>, IReadOnlyCollection<T>
+    class GenericList<T> : IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable, IList, ICollection, IReadOnlyList<T>, IReadOnlyCollection<T>
     {
-        T[] array = new T[5];
+        const int size = 2;
+        static int pov = 2;
+        static int currentValue= (int)Math.Pow(size, pov);
+
+        T[] array = new T[currentValue];
         T[] massiv = new T[5];
 
         #region Properties
@@ -48,8 +52,8 @@ namespace GenericList
         {  
             get
             {
-				//return ((IList)array).IsFixedSize;
-				return true;
+                //return ((IList)array).IsFixedSize;
+                return true;
             }
         }
 
@@ -104,21 +108,21 @@ namespace GenericList
 
         public bool Contains(object item)
         {
-			if (item == null)
-				return false;
-			for (int i = 0; i < array.Length; i++)
+            if (item == null)
+                return false;
+            for (int i = 0; i < array.Length; i++)
             {
                 if (!Comparer.Equals(array[i], item))
-				{
-					return false;
-				}
+                {
+                    return false;
+                }
             }
             return true;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            if (arrayIndex != null && arrayIndex >= 0)
+            if ( arrayIndex >= 0)
             {
                 for (int i = arrayIndex; i < array.Length; i++)
                     for (int j = 0; j < array.Length; j++)
@@ -128,7 +132,12 @@ namespace GenericList
 
         public void CopyTo(Array array, int index)
         {
-            throw new NotImplementedException();
+            if ( index >= 0)
+            {
+                for (int i = index; i < array.Length; i++)
+                    for (int j = 0; j < array.Length; j++)
+                        massiv[j] = array[i];
+            }
         }
 
         public IEnumerator<T> GetEnumerator()
