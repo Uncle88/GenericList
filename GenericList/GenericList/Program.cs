@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System; using System.Collections.Generic;  namespace GenericList {
+	class MainClass
+	{
+		public static void Main(string[] args)
+		{
+			int[] a = new int[4] { 1, 2, 3, 4 };
+			int[] b = new int[4];
 
-namespace GenericList
-{
-    class MainClass
-    {
-        public static void Main(string[] args)
-        {
-            var myList = new GenericList<int>();
-            for (int i = 0; i < 10; i++)
-            {
-                myList.Add(i);
-                //myList.
-            }
+			int index = 0;
 
-            var list = new List<int>();
-            //list.
+			a.CopyTo(b, index);
+			foreach (int elements in a)
+				Console.WriteLine(a[elements]);
+			Console.ReadLine();
 		}
-    }
-}
+	} } 
